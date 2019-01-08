@@ -10,7 +10,13 @@ const singin = require("./controllers/singin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 
-const { NODE_ENV, PORT, CLARIFAI_API_KEY, DB } = require("./config.js");
+const {
+  NODE_ENV,
+  PORT,
+  CLARIFAI_API_KEY,
+  DB,
+  DATABASE_URL
+} = require("./config.js");
 
 const clarifaiApp = new Clarifai.App({
   apiKey: CLARIFAI_API_KEY
@@ -25,7 +31,8 @@ getDbConnectionSettings = () => {
         database: DB.NAME
       }
     : {
-        connectionString: "asdqwdweded"
+        connectionString: DATABASE_URL,
+        ssl: true
       };
 };
 
